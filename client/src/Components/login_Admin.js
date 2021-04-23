@@ -27,6 +27,7 @@ const Login_Admin = () => {
 
         });
 
+
         //storing the data he get
         const data =res.json();
         if(res.status===400|| !data)
@@ -71,7 +72,7 @@ const Login_Admin = () => {
                                 ></input>
                             </div>
 
-                            <div className="form-group row">
+                    <div className="form-group row">
                        <label htmlFor="city">Select Your City/Town/Village</label>
                                   <Input type="select" name="city" id="city" value={city} onChange={(e)=> setCity(e.target.value)} >
                                       <option value="AHMEDABAD">AHMEDABAD</option>

@@ -60,6 +60,18 @@ class Header extends Component {
                             <DropdownItem href="./login_User">User Login</DropdownItem>
                        </DropdownMenu>
                  </UncontrolledDropdown>
+
+                 <NavItem>
+                        <NavLink className="nav-link" to="/upComplaints">
+                            Upload Complaints
+                        </NavLink>
+                </NavItem>
+
+                <NavItem>
+                        <NavLink className="nav-link" to="/addstories">
+                            Add Happy Stories
+                        </NavLink>
+                </NavItem>
               
                  <NavItem>
                        <NavLink className="nav-link" to="/stats">

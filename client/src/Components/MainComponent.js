@@ -9,6 +9,9 @@ import Login_User from './login_User';
 import Signup_User from './signup_user';
 import Stats from './StatisticsComponent';
 import Logout from './Logout';
+import UploadComplaints from './UploadComplaints';
+import CreateData from './adddata';
+
 //importing router applications
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -25,6 +28,8 @@ class Main extends Component {
               <Route exact path="/login_User" component={ Login_User } />
               <Route exact path="/signup_user" component = { Signup_User } />
               <Route exact path="/stats" component = { Stats } />
+              <Route exact path="/addstories" component = { CreateData } />
+              <Route exact path="/upComplaints"component = { UploadComplaints } />
               <Route exact path="/logout" component = { Logout } />
               <Redirect to="/Home" />
  

@@ -1,96 +1,149 @@
-import React, { Component } from 'react';
-import { Form, FormGroup, Input, Col, Row, Label, FormFeedback, Button} from 'reactstrap';
+import React, { useState } from 'react';
+import { Form, Input,  Row, Container } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
-class UploadComplaints extends Component {
-    constructor(props) {
-        super(props);
+const Signup_admin = () => {
 
-        this.state = {
-           age: '',
-           gender: 'MALE',
-           state: 'GUJARAT',
-           city: 'AHMEDABAD',
-           area: '',
-           message: '',
-           name: '',
-           email: '',
-           contact: '',
-           touched: {
-               age: '',
-               state: '',
-               city: '',
-               area: '',
-           }
-        };
+    const history= useHistory();
+    const [complaint, setComplaint] = useState({
+        pname: '',
+        pstation: '',
+        name: '',
+        gender: '',
+        state: '',
+        city: '',
+        area: '',
+        description: '',
 
 
+
+
+    });
+
+    let name, value;
+  
+    const handleInputs = (e) => {
+      console.log(e);
+  
+      name = e.target.name;
+      value= e.target.value;
+  
+      setComplaint({ ...complaint, [name]:value });
+  
     }
+
+    const PostData = async (e) => {
+  
+      e.preventDefault();
+      const { age, gender, state, city, area,
+      message, name, email, contact } = complaint;
+      
+      console.log(name);
+
+      const res = await fetch('/', {
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        
+        body:JSON.stringify({
+            age, gender, state, city, area,
+            message, name, email, contact, age, state, city, area
+        })
+      });
+  
+      const data = await res.json();
+  
+      if(data.status === 422 || !data) {
+        window.alert(" Complain is not registered :-( ");
+        console.log(" Complain is not registered :-( ");
+      }
+      else {
+        window.alert("Complaint Post");
+  
+        history.push('/Home');
+      }
+    }
+
+    return(
+      <>
+        <Container className="center">
+           <Row className="content">
+               
+               <div className="col-md-6 mb-3 mx-auto">
+                  <h2 className="signup-text mb-3">Add Complain</h2>
+                  <Form method="POST" className="register-form mx-auto" id="register-form">
+
+                                   <div className="form-group row"> 
+
+                           <label htmlFor="name">Police Officer Name</label>
+                           <Input 
+                                type="text" name="pname" 
+                                value={complaint.name}
+                                onChange={handleInputs}
+                                placeholder="Your Name" className="form-control"
+                           ></Input>
+                       
+                    </div>
+
+                    <div className="form-group row"> 
+                    
+                            <label htmlFor="pstation">Police Station</label>
+                            <Input 
+                                type="text" name="pstation" 
+                                value={complaint.pstation}
+                                onChange={handleInputs}
+                                placeholder="Police Station" className="form-control"
+                            ></Input>
+                
+                    </div>
+
+                    <div className="col-12">
+                           <h6><strong>Complaint Details</strong></h6>
+                    </div>
    
-     handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-    
-        this.setState({
-          [name]: value
-        });
-    }
+                    <div className="form-group row"> 
+                           <label htmlFor="name">Name</label>
+                           <Input 
+                                type="text" name="name" 
+                                value={complaint.name}
+                                onChange={handleInputs}
+                                className="form-control"
+                                placeholder="Age"
+                           ></Input>
+                       </div>
 
-    handleSubmit(event) {
-        console.log('Current State is: ' + JSON.stringify(this.state));
-        alert('Current State is: ' + JSON.stringify(this.state));
-        event.preventDefault();
-    }
-
-    render() {
-        return(
-           <div className="container">
-                 <div className="row row-content">
-                     <div className="col-12">
-                         <h3>Complaint Form</h3>
-                     </div>
-                     <div className="col-12 col-md-9">
-                           { /*Age*/ }
-                        <FormGroup row>
-                             <Label htmlFor="age" md={5}>Age</Label>
-                                <Col md={7}>
-                                    <Input type="age" id="age" name="age"
-                                        placeholder="Age"
-                                        value={this.state.age}
-                                        />
-                                    { /*errors for email
-                                    <FormFeedback>
-                                           {errors.age}
-                                    </FormFeedback>      */}         
-                                </Col>
-                        </FormGroup>
-
-                            { /*FEMALE/MALE*/ }
-                        <FormGroup row>
-                            <Label htmlFor="gender" md={5}>Select gender</Label>
-                               <Col md={7}>
-                                  <Input  type="select" name="gender" id="gender">
+                       <div className="form-group row"> 
+                            <label htmlFor="gender">Gender</label>
+                            <Input  type="select" name="gender" id="gender" value={complaint.gender}
+                                    onChange={handleInputs}>
                                       <option value="MALE">MALE</option>
                                       <option value="FEMALE">FEMALE</option>
-                                  </Input>
-                               </Col>
-                        </FormGroup>
-                            
-                             { /*State*/ }
-                        <FormGroup row>
-                            <Label htmlFor="state" md={5}>Select State</Label>
-                              <Col md={7}>
-                                  <Input  type="select" name="state" id="state">
-                                      <option value="GUJARAT">GUJARAT</option>
-                                  </Input>
-                              </Col>
-                        </FormGroup>
+                            </Input>
+                       </div>
 
-                               { /*City/Town/Village*/ }
-                        <FormGroup row>
-                                  <Label htmlFor="city" md={5}>Select Your City/Town/Village</Label>
-                                  <Col md={7}>
-                                  <Input type="select" name="city" id="city">
+                       <div className="form-group row"> 
+                            <label htmlFor="ade">Age</label>
+                            <Input  type="text" name="age" id="Age" value={complaint.age}
+                                    onChange={handleInputs}
+                                    placeholder="Age"
+                                    >
+                                    
+                            </Input>
+                       </div>
+
+                       <div className="form-group row"> 
+                            <label htmlFor="state">State</label>
+                            <Input  type="select" name="state" id="state" value={complaint.state} onChange={handleInputs}>
+                                      <option value="GUJARAT">GUJARAT</option>
+                            </Input>
+                       </div>
+
+
+
+                       <div className="form-group row">
+                       <label htmlFor="city">Select Your City/Town/Village</label>
+                                  <Input type="select" name="city" id="city" value={complaint.city} onChange={handleInputs}>
                                       <option value="AHMEDABAD">AHMEDABAD</option>
                                       <option value="SURAT">SURAT</option>
                                       <option value="RAJKOT">RAJKOT</option>
@@ -141,82 +194,42 @@ class UploadComplaints extends Component {
                                       <option value="BARDOLI">BARDOLI</option>
                                       <option value="AMERELI">AMERELI</option>
                                       <option value="IDAR">IDAR</option>
-                                  </Input>
-                                  </Col>
-                         </FormGroup>
+                                </Input>
+                    </div>
+
+                    <div className="form-group row"> 
+                           <label htmlFor="area">Your Area</label>
+                           <Input 
+                                type="text" name="area" 
+                                value={complaint.area}
+                                onChange={handleInputs}
+                                className="form-control"
+                                placeholder="Area"
+                           ></Input>
                        
-                            { /*Area*/ }
-                        <FormGroup row>
-                             <Label htmlFor="area" md={5}>Area</Label>
-                                <Col md={7}>
-                                    <Input type="area" id="area" name="area"
-                                        placeholder="Area"
-                                        value={this.state.area}
-                                     />
-                                    { /*errors for area*
-                                    <FormFeedback>
-                                           {errors.area}
-                                    </FormFeedback>   */ }           
-                                </Col>
-                        </FormGroup>
+                       </div>
 
-                        <FormGroup row>
-                                <Label htmlFor="message" md={5}>Description</Label>
-                                <Col md={7}>
-                                    <Input type="textarea" id="message" name="message"
-                                        rows="12"
-                                       /* value={this.state.message}
-                                        onChange={this.handleInputChange}*/></Input>
-                                </Col>
-                       </FormGroup>
-
-                        <div className="col-12">
-                           <h6><strong>Complaint By:</strong></h6>
-                        </div>
+                    <div className="form-group row">
+                        <label htmlFor="description">Description</label>
+                            <Input type="textarea" id="policestation" name="description"
                         
-                       <FormGroup row>
-                             <Label htmlFor="name" md={5}>Full Name</Label>
-                                <Col md={7}>
-                                    <Input type="text" id="name" name="name"
-                                        placeholder="Full Name"
-                                        value={this.state.name}
-                                        />         
-                                </Col>
-                        </FormGroup>
-                         <FormGroup row>
-                             <Label htmlFor="email" md={5}>Email Address</Label>
-                                <Col md={7}>
-                                    <Input type="email" id="email" name="email"
-                                        placeholder="Email Address"
-                                        value={this.state.email}
-                                        />         
-                                </Col>
-                        </FormGroup>
+                                   value={complaint.description}
+                                   onChange={handleInputs} 
+                                   className="form-control" placeholder="Police Station"
+                            />          
+                    </div>
+                   
 
-                         <FormGroup row>
-                             <Label htmlFor="telnum" md={5}>Contact</Label>
-                                <Col md={7}>
-                                    <Input type="tel" id="telnum" name="telnum"
-                                        placeholder="Tel. number"
-                                        value={this.state.telnum}
-                                        />         
-                                </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                                <Col md={{size: 10, offset: 2}}>
-                                    <Button type="submit" color="primary">
-                                        Submit Complaint
-                                    </Button>
-                                </Col>
-                       </FormGroup>
-
-                  
-                     </div>
-                 </div>
-            </div>
-        );
-    }
+                   <div className="btn-class">
+                        <Input type="submit" name="signup"  className="btn-class-form btn btn-primary" value="Register" onClick={PostData}></Input>
+                   </div>
+   
+                  </Form>
+               </div>
+           </Row>
+        </Container>
+      </>
+    )
 }
 
-export default UploadComplaints;
+export default Signup_admin;
