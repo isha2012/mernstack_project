@@ -65,6 +65,7 @@ const RenderMenu = () => {
 
                             <DropdownItem href="./login_User">User Login</DropdownItem>
                        </DropdownMenu>
+                       
                 </UncontrolledDropdown>
 
                 <NavItem>
@@ -113,20 +114,21 @@ class Header extends Component {
 
     <React.Fragment>
 
-      <Navbar dark expand="md" color="primary">
+      <Navbar dark expand="md" className="primary">
          <div className="container">
       
            { /*toggle on extra small size screen and for creating toggle button*/}
             <NavbarToggler onClick={this.toggleNav} />
 
             <NavbarBrand className="mr-auto" href="/">
-                 <img src="assets/images/logo.png" heights="30" width="41" alt="Lost Person Records" />
+                 <img src='assests/images/logo.jpg' heights="30" width="41" alt="Lost Person Records" className="d-inline-block align-text-center" />
+                 Lost Person Records
             </NavbarBrand>
            
             { /*collapsing the navbar at small size window. without collapse function it will not collapse. */ }
 
             <Collapse isOpen={this.state.isNavOpen} navbar>
-             <Nav navbar>
+             <Nav navbar className="ml-auto">
 
              
         

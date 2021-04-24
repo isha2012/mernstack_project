@@ -12,7 +12,7 @@ class Google extends Component {
            return(
               <div className="container">
                  <GoogleLogin
-                  clientId="758553502903-507je8pnemom2o0e48b28qvlrppmv4ag.apps.googleusercontent.com"
+                  clientId="758553502903-tmraobu5atgr0ga92ojpp74h5jh8ps0o.apps.googleusercontent.com"
                   buttonText="Login"
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}

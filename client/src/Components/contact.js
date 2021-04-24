@@ -58,11 +58,7 @@ const MapContainer = () => {
     ];
   
   return (
-     <LoadScript
-      
-      
-
-      googleMapsApiKey='http://data.police.uk/api/'>
+     <LoadScript googleMapsApiKey='AIzaSyCRsAQrAgOj0a11SM0kJx0N7RkYum5OYZc' >
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}

@@ -23,30 +23,29 @@ const CreateData = () => {
                      </div>
  
                      <div className="form-group row"> 
-                     <label htmlFor="image">Picture</label>
-                     <input 
-                             type="file" name="photo" 
-                             accept=".png, .jpg, .jpeg"
-
-                     ></input>
+                        <label htmlFor="image">Picture</label>
+                        <input 
+                                type="file" name="photo" 
+                                accept=".png, .jpg, .jpeg"
+                        ></input>
                      </div>
  
                      <div className="form-group row"> 
-                     <label htmlFor="age">Age</label>
-                     <input  
-                             type="text" name="age"  autoComplete="off"
-                           
-                             placeholder="Age" className="form-control"
-                     ></input>
+                        <label htmlFor="age">Age</label>
+                        <input  
+                                type="text" name="age"  autoComplete="off"
+                            
+                                placeholder="Age" className="form-control"
+                        ></input>
                      </div>
 
                      <div className="form-group row"> 
-                     <label htmlFor="location">Location</label>
-                     <input 
-                             type="text" name="location"  autoComplete="off"
-                           
-                             placeholder="Location" className="form-control"
-                     ></input>
+                        <label htmlFor="location">Location</label>
+                        <input 
+                                type="text" name="location"  autoComplete="off"
+                            
+                                placeholder="Location" className="form-control"
+                        ></input>
                      </div>
 
                      
