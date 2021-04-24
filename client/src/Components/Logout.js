@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { UserContext} from "./MainComponent";
 const Logout = () => {
+
+    const { state, dispatch } = useContext(UserContext);
     const history = useHistory();
     //promises
     useEffect(()=> {
@@ -12,13 +14,14 @@ const Logout = () => {
             },
             credentials: "include"
         }).then((res)=>{
-              history.push('/Home', {
+            dispatch({type: "ADMIN", payload: false});
+            history.push('/Home', {
                   replace: true
-              });
-              if(res.status!=200) {
-                  const error = new Error(res.error);
-                  throw error;
-              }
+            });
+            if(res.status!==200) {
+                const error = new Error(res.error);
+                throw error;
+            }
         }).catch((err) => {
             console.log(err);
         });

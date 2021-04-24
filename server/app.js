@@ -43,7 +43,7 @@ app.use(cors());
 app.use(express.json());
 
 const uploadRouter = require('./routes/data');
-app.use('/data',uploadRouter);
+app.use('/data', uploadRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);

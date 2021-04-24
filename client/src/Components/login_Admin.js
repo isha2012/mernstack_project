@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Row, Input} from 'reactstrap';
 import { Container } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
+import { UserContext} from "./MainComponent";
 
 const Login_Admin = () => {
+
+    const { state, dispatch } = useContext(UserContext);
+
 
     const history= useHistory();
     
@@ -27,14 +31,14 @@ const Login_Admin = () => {
 
         });
 
-
         //storing the data he get
-        const data =res.json();
+        const data = res.json();
         if(res.status===400|| !data)
         {
             window.alert("Invalid Credentials")
         }
         else{
+           dispatch({type: "ADMIN", payload: true})
            window.alert("Login Succesufull");
            console.log("success");
 

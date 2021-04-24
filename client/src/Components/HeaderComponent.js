@@ -1,17 +1,102 @@
-import React, { Component } from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText } from 'reactstrap';
+import React, { Component, useContext } from 'react';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { UserContext} from "./MainComponent";
+
+const RenderMenu = () => {
+    const { state, dispatch } = useContext(UserContext);
+    if(state) {
+        return(
+            <>
+                <NavItem>
+                       <NavLink className="nav-link" to="Home">
+                           <span className="fa fa-home fa-lg"></span> Home
+                       </NavLink>
+                </NavItem>
+                <NavItem>
+                        <NavLink className="nav-link" to="/upComplaints">
+                            Upload Complaints
+                        </NavLink>
+                </NavItem>
+                <NavItem>
+                        <NavLink className="nav-link" to="/addstories">
+                            Add Happy Stories
+                        </NavLink>
+                </NavItem>
+                <NavItem>
+                        <NavLink className="nav-link" to="/">
+                            Responses
+                        </NavLink>
+                </NavItem>
+                <NavItem>
+                       <NavLink className="nav-link" to="/stats">
+                           Stats
+                       </NavLink>
+                 </NavItem>
+                <NavItem>
+                       <NavLink className="nav-link" to="/logout">
+                           <span className="fa fa-address-card fa-lg"></span> Logout
+                       </NavLink>
+                 </NavItem>
+
+            </>
+        )
+    }
+    else {
+        return(
+        
+            <>
+               <NavItem>
+                       <NavLink className="nav-link" to="Home">
+                           <span className="fa fa-home fa-lg"></span> Home
+                       </NavLink>
+                </NavItem>
+
+              
+                { /*Dropdown*/ }
+                <UncontrolledDropdown nav inNavbar>
+
+                       <DropdownToggle nav caret>
+                            Sign up
+                       </DropdownToggle>
+
+                       <DropdownMenu right>
+                            <DropdownItem href="./login_Admin">Admin Login</DropdownItem>
+
+                            <DropdownItem href="./login_User">User Login</DropdownItem>
+                       </DropdownMenu>
+                </UncontrolledDropdown>
+
+                <NavItem>
+                       <NavLink className="nav-link" to="/stats">
+                           Stats
+                       </NavLink>
+                 </NavItem>
+
+                 <NavItem>
+                       <NavLink className="nav-link" to="/contactus">
+                           <span className="fa fa-address-card fa-lg"></span> Contact Us
+                       </NavLink>
+                 </NavItem>
+            </>
+           
+        )
+        
+    }
+}
 
 class Header extends Component {
+
     
-  constructor(props) {
-       super(props);
-       this.state = {
-            isNavOpen: false
-       };
-       //now the method toggleNav is avaiable for use 
-       this.toggleNav = this.toggleNav.bind(this);
-  }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+                isNavOpen: false
+        };
+        //now the method toggleNav is avaiable for use 
+        this.toggleNav = this.toggleNav.bind(this);
+    }
 
   //to use this method we have to bind it in construtor
   toggleNav() {
@@ -21,6 +106,7 @@ class Header extends Component {
       });
   }
  
+
   render() {
 
     return(
@@ -42,54 +128,10 @@ class Header extends Component {
             <Collapse isOpen={this.state.isNavOpen} navbar>
              <Nav navbar>
 
-                 <NavItem>
-                       <NavLink className="nav-link" to="Home">
-                           <span className="fa fa-home fa-lg"></span> Home
-                       </NavLink>
-                 </NavItem>
-                 { /*Dropdown*/ }
-                 <UncontrolledDropdown nav inNavbar>
-
-                       <DropdownToggle nav caret>
-                            Sign up
-                       </DropdownToggle>
-
-                       <DropdownMenu right>
-                            <DropdownItem href="./login_Admin">Admin Login</DropdownItem>
-
-                            <DropdownItem href="./login_User">User Login</DropdownItem>
-                       </DropdownMenu>
-                 </UncontrolledDropdown>
-
-                 <NavItem>
-                        <NavLink className="nav-link" to="/upComplaints">
-                            Upload Complaints
-                        </NavLink>
-                </NavItem>
-
-                <NavItem>
-                        <NavLink className="nav-link" to="/addstories">
-                            Add Happy Stories
-                        </NavLink>
-                </NavItem>
-              
-                 <NavItem>
-                       <NavLink className="nav-link" to="/stats">
-                           Stats
-                       </NavLink>
-                 </NavItem>
-
-                 <NavItem>
-                       <NavLink className="nav-link" to="/contactus">
-                           <span className="fa fa-address-card fa-lg"></span> Contact Us
-                       </NavLink>
-                 </NavItem>
-
-                 <NavItem>
-                       <NavLink className="nav-link" to="/logout">
-                           <span className="fa fa-address-card fa-lg"></span> Logout
-                       </NavLink>
-                 </NavItem>
+             
+        
+                <RenderMenu />
+                
 
             </Nav>
           </Collapse>     

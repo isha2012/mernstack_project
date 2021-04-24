@@ -12,7 +12,7 @@ let path = require('path');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-      cb(null, '../client/public/uploads/images');
+      cb(null, '../public/uploads/images');
   },
   filename: function(req, file, cb) {   
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -44,9 +44,9 @@ uploadrouter.route('/').get((req, res) => {
   })
 });
 
-var type = upload.single('recfile');
 
-uploadrouter.post("/upload", type, (req,res) => {
+
+uploadrouter.post("/upload",upload.single('photo'), (req,res) => {
     const photo=req.file.filename;
     upload(req,res,(err)=>{
      if(err){
@@ -60,7 +60,7 @@ uploadrouter.post("/upload", type, (req,res) => {
 })
 
 
-uploadrouter.post("/add", type, (req, res ) => {
+uploadrouter.post("/add", upload.single('photo'), (req, res ) => {
   console.log(JSON.stringify(req.body));
   
   const username = req.body.username;

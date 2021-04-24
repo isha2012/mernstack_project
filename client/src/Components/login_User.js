@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Row} from 'reactstrap';
 import Google from './Google';
 import { Container } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
+import { UserContext} from "./MainComponent";
 
 const Login_User = () => {
+
+    const { state, dispatch } = useContext(UserContext);
 
     const history= useHistory();
     
@@ -33,6 +36,7 @@ const Login_User = () => {
             window.alert("Invalid Credentials")
         }
         else{
+           dispatch({type: "USER", payload: true})
            window.alert("Login Succesufull");
            console.log("success");
 

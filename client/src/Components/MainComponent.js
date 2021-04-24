@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {Navbar, NavbarBrand } from 'reactstrap';
+import React, { createContext, useReducer } from 'react';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
@@ -10,34 +9,49 @@ import Signup_User from './signup_user';
 import Stats from './StatisticsComponent';
 import Logout from './Logout';
 import UploadComplaints from './UploadComplaints';
-import CreateData from './adddata';
-
+import CreateData from './addData';
+import MapContainer from './contact';
 //importing router applications
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-class Main extends Component {
-   render() {
-      return (
-      <div>
-          <Header />
-          <Switch>
+import { initialstate, reducer } from "../reducer/UseReducer";
 
-              <Route path='/Home' component = {Home} />
-              <Route exact path="/login_Admin" component={ Login_Admin } />
-              <Route exact path="/signup_admin" component={ Signup_admin } />
-              <Route exact path="/login_User" component={ Login_User } />
-              <Route exact path="/signup_user" component = { Signup_User } />
-              <Route exact path="/stats" component = { Stats } />
-              <Route exact path="/addstories" component = { CreateData } />
-              <Route exact path="/upComplaints"component = { UploadComplaints } />
-              <Route exact path="/logout" component = { Logout } />
-              <Redirect to="/Home" />
- 
-          </Switch>
-          <Footer />
-      </div>
+export const UserContext = createContext();
+
+const Main = () => {
+
+    const [ state, dispatch ] = useReducer(reducer, initialstate);
+    //initialstate value will be stored in state.
+
+    return (
+      <>
+       <UserContext.Provider value={{state, dispatch}}>
+
+        <div>
+                <Header />
+                <Switch>
+        
+                    <Route path='/Home' component = {Home} />
+                    <Route exact path="/login_Admin" component={ Login_Admin } />
+                    <Route exact path="/signup_admin" component={ Signup_admin } />
+                    <Route exact path="/login_User" component={ Login_User } />
+                    <Route exact path="/signup_user" component = { Signup_User } />
+                    <Route exact path="/stats" component = { Stats } />
+                    <Route exact path="/contactus" component = { MapContainer } />
+                    <Route exact path="/addstories" component = { CreateData } />
+                    <Route exact path="/upComplaints"component = { UploadComplaints } />
+                    <Route exact path="/logout" component = { Logout } />
+                    <Redirect to="/Home" />
+        
+                </Switch>
+                <Footer />
+            </div>
+
+        </UserContext.Provider>
+        
+      </>
       );
-   }
+   
 }
 
 export default Main;

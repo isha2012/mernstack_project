@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input,  Row, Container } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
-const Signup_admin = () => {
+const UploadComplaints = () => {
 
     const history= useHistory();
     const [complaint, setComplaint] = useState({
@@ -14,9 +14,6 @@ const Signup_admin = () => {
         city: '',
         area: '',
         description: '',
-
-
-
 
     });
 
@@ -48,7 +45,7 @@ const Signup_admin = () => {
         
         body:JSON.stringify({
             age, gender, state, city, area,
-            message, name, email, contact, age, state, city, area
+            message, name, email, contact
         })
       });
   
@@ -232,4 +229,4 @@ const Signup_admin = () => {
     )
 }
 
-export default Signup_admin;
+export default UploadComplaints;

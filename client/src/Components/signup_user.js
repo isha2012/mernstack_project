@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Row, Container } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 import { useHistory } from 'react-router-dom';
-
-import './user.css';
 
 const Signup_User = () => {
 
