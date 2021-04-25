@@ -5,6 +5,9 @@ import { UserContext} from "./MainComponent";
 
 const RenderMenu = () => {
     const { state, dispatch } = useContext(UserContext);
+   
+    console.log(state);
+
     if(state) {
         return(
             <>
@@ -38,7 +41,6 @@ const RenderMenu = () => {
                            <span className="fa fa-address-card fa-lg"></span> Logout
                        </NavLink>
                  </NavItem>
-
             </>
         )
     }
@@ -51,8 +53,6 @@ const RenderMenu = () => {
                            <span className="fa fa-home fa-lg"></span> Home
                        </NavLink>
                 </NavItem>
-
-              
                 { /*Dropdown*/ }
                 <UncontrolledDropdown nav inNavbar>
 
@@ -67,6 +67,12 @@ const RenderMenu = () => {
                        </DropdownMenu>
                        
                 </UncontrolledDropdown>
+
+                <NavItem>
+                       <NavLink className="nav-link" to="/">
+                           View Complaints
+                       </NavLink>
+                 </NavItem>
 
                 <NavItem>
                        <NavLink className="nav-link" to="/stats">
@@ -87,8 +93,6 @@ const RenderMenu = () => {
 }
 
 class Header extends Component {
-
-    
 
     constructor(props) {
         super(props);
@@ -129,12 +133,7 @@ class Header extends Component {
 
             <Collapse isOpen={this.state.isNavOpen} navbar>
              <Nav navbar className="ml-auto">
-
-             
-        
                 <RenderMenu />
-                
-
             </Nav>
           </Collapse>     
          </div>

@@ -17,15 +17,18 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { initialstate, reducer } from "../reducer/UseReducer";
 
 export const UserContext = createContext();
+export const AdminContext = createContext();
 
 const Main = () => {
 
     const [ state, dispatch ] = useReducer(reducer, initialstate);
+   
     //initialstate value will be stored in state.
 
     return (
       <>
        <UserContext.Provider value={{state, dispatch}}>
+           <AdminContext.Provider value={{state, dispatch}}>
 
         <div>
                 <Header />
@@ -46,7 +49,7 @@ const Main = () => {
                 </Switch>
                 <Footer />
             </div>
-
+            </AdminContext.Provider>
         </UserContext.Provider>
         
       </>

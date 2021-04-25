@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt =require('bcryptjs');
 const router = express.Router();
-
+const authenticate = require("../middleware/authenticate");
 require('../db/conn');
 const User = require("../models/userSchema");
 
@@ -15,6 +15,7 @@ router.get('/', (req, res) =>  {
 router.post('/register',async (req, res) => {
 
     const { name, email, password} = req.body;
+
     if(!name || !email || !password) {
           return res.status(422).json({error: 'Error'});
     } 
@@ -41,11 +42,13 @@ router.post('/register',async (req, res) => {
 
 //login route
 router.post('/signin', async  (req, res) => {
-    try {
-        let token;
-        //getting email and password
-        const {email, password } = req.body;
+     //getting email and password
+     const {email, password } = req.body;
 
+    try {
+
+        let token;
+       
         if(!email || !password) {
             res.setHeader('Content-Type', 'application/json');
             return res.status(400).json({error: 'Invalid credentials!'});
@@ -79,6 +82,15 @@ router.post('/signin', async  (req, res) => {
     } catch(err) {
         console.log(err);
     }
+});
+
+
+router.post('/postresponse', authenticate, (req, res) => {
+      res.statusCode=200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({message: "middleware success"});
+      //res.status(200).get(req.rootUser);
+
 });
 
 router.get('/logout', (req, res) => {

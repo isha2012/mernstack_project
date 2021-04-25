@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Form, Row} from 'reactstrap';
-import Google from './Google';
 import { Container } from 'react-bootstrap';
-import { NavLink, useHistory } from 'react-router-dom';
-import { UserContext} from "./MainComponent";
+import { useHistory } from 'react-router-dom';
+import { AdminContext} from "./MainComponent";
 
 const Login_User = () => {
 
-    const { state, dispatch } = useContext(UserContext);
+    const { state, dispatch } = useContext(AdminContext);
 
     const history= useHistory();
     
@@ -36,7 +35,7 @@ const Login_User = () => {
             window.alert("Invalid Credentials")
         }
         else{
-           dispatch({type: "USER", payload: true})
+           dispatch({type: "USER", payload: true })
            window.alert("Login Succesufull");
            console.log("success");
 
@@ -78,6 +77,7 @@ const Login_User = () => {
                                 <input type="submit" name="login"  autoComplete="off"  className="btn-class-form btn btn-primary" value="Login" onClick={loginuser} ></input>
                             </div>
 
+                              {/*
                             <div className="m-4">
                                  <h6> Not yet Registered? <NavLink to="/signup_user"> Sign Up </NavLink></h6>
                             </div>
@@ -86,7 +86,7 @@ const Login_User = () => {
                                <p>---- <strong>OR</strong> ---</p>
                                <h5 className="m-4">Login with Google</h5>
                                     <Google />
-                            </div>
+                            </div>*/}
 
                     </Form>
                 </div>

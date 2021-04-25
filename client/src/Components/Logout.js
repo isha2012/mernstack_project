@@ -1,9 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext} from "./MainComponent";
+
+
 const Logout = () => {
 
     const { state, dispatch } = useContext(UserContext);
+  
+   
     const history = useHistory();
     //promises
     useEffect(()=> {
@@ -15,6 +19,7 @@ const Logout = () => {
             credentials: "include"
         }).then((res)=>{
             dispatch({type: "ADMIN", payload: false});
+         
             history.push('/Home', {
                   replace: true
             });

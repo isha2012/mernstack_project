@@ -39,7 +39,10 @@ userSchmea.pre('save', async function(next) {
 //generating a token
 userSchmea.methods.generateAuthToken = async function () {
     try {
-       let gettoken = jwt.sign({_id:this._id}, process.env.SECRET_KEY);
+        const expiration = process.env.DB_ENV === 'testing' ? 100 : 604800000;
+        let gettoken = jwt.sign({_id:this._id}, process.env.SECRET_KEY, {
+            expiresIn: process.env.DB_ENV === 'testing' ? '1d' : '7d',
+      });
        this.tokens = this.tokens.concat({ token: gettoken });
        await this.save();
        return gettoken;
@@ -47,6 +50,7 @@ userSchmea.methods.generateAuthToken = async function () {
         console.log(err);
     }
 }
+
 
 const User = mongoose.model('USER', userSchmea);
 

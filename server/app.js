@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const express = require('express');
@@ -8,6 +9,8 @@ const mongoose = require('mongoose');
 
 const app = express(); 
 app.use(express.json());
+
+app.use(cookieParser());
 
 dotenv.config({ path: './config.env' });
 require('./db/conn');

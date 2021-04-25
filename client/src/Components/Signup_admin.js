@@ -54,7 +54,6 @@ const Signup_admin = () => {
       }
       else {
         window.alert("Registeration Successfull");
-  
         history.push('/login_Admin');
       }
     }

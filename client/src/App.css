@@ -30,3 +30,8 @@
 a {
   color: cornsilk;
 }
+
+a:hover {
+  background-color:rgb(228, 170, 228);
+  color:rgb(104, 73, 104)
+}
