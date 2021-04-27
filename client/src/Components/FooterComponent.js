@@ -21,7 +21,7 @@ function Footer(props) {
                      </div>
 
                      <div className="col-12 col-sm-4 align-self-center">
-                        <img src='assests/images/logo.jpg' heights="85" width="100" alt="Lost Person Records" />       
+                        <img src='assests/images/logo.jpg' heights="120" width="180"  alt="Lost Person Records" />       
                      </div>
 
                 </div>

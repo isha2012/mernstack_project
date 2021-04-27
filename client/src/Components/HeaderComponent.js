@@ -125,8 +125,8 @@ class Header extends Component {
             <NavbarToggler onClick={this.toggleNav} />
 
             <NavbarBrand className="mr-auto" href="/">
-                 <img src='assests/images/logo.jpg' heights="30" width="41" alt="Lost Person Records" className="d-inline-block align-text-center" />
-                 Lost Person Records
+                 <img src='assests/images/logo.jpg' heights="30" width="60" alt="Lost Person Records" className="d-inline-block align-text-center p-1" />
+                   Lost Person Records
             </NavbarBrand>
            
             { /*collapsing the navbar at small size window. without collapse function it will not collapse. */ }
